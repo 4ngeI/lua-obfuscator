@@ -5,7 +5,7 @@ This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for
 ## Features
 1. Fake Condition(s) for If Statements
 2. Minified Code
-3. Empty Arrays Replaced with a Function
+3. Empty Tables Replaced with a Function
 4. Strings Converted to Variables
 5. Obfuscated Lookup Functions
 
