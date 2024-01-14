@@ -1,5 +1,3 @@
-### Braindead Obfuscator
-
 Transform your Lua code into a decompiled-like appearance with this dumb obfuscator. To utilize it, write your code in `in.lua` and execute `main.lua`.
 
 This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for Roblox syntax).
