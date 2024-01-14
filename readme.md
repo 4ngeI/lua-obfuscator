@@ -12,3 +12,8 @@ This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for
 ## Todo
 - Control Flow Obfuscation
 - String Encryption
+
+BEFORE
+[![BEFORE](https://raw.githubusercontent.com/4ngeI/lua-obfuscator/main/info/before.png "BEFORE")](https://raw.githubusercontent.com/4ngeI/lua-obfuscator/main/info/before.png "BEFORE")
+AFTER
+[![AFTER](https://raw.githubusercontent.com/4ngeI/lua-obfuscator/main/info/after.png "AFTER")](https://raw.githubusercontent.com/4ngeI/lua-obfuscator/main/info/after.png "AFTER")
