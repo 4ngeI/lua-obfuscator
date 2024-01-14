@@ -11,3 +11,4 @@ This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for
 
 ## Todo
 - Control Flow Obfuscation
+- String Encryption
