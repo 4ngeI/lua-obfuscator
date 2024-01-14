@@ -22,3 +22,7 @@ end)
 if err then
     print(err[1])
 end
+print(aaa.z:byte(1,-1))
+local a = aaa.z:sub(1,-1)
+local a = aaa.z:gsub(1,-1)
+local e = aaa.z:len()

@@ -39,8 +39,18 @@ return function (code)
     do  --lookups
         AST = parser.parse(code)
         parser.traverseTree(AST,function(node)
-            if node.type == "lookup" and node.member and node.member.value then
-                if type(node.member.value) ~= "number" then
+            if node.type == "call" then
+                if not node.method then
+                    if node.callee.type == "lookup" then
+                        if type(node.callee.member.value) ~= "number" then
+                            node.callee.member = parser.newNode("identifier",node.callee.member.value.."_var")
+                        end
+                    end
+                else
+                    node.callee.mod = true;
+                end
+            elseif node.type == "lookup" then
+                if node.member.value ~= nil and type(node.member.value) ~= "number" and not node.mod then
                     node.member = parser.newNode("identifier",node.member.value.."_var")
                 end
             end
