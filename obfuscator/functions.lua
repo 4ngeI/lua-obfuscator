@@ -23,11 +23,11 @@ return function (code)
             function_list = function_list.."local "..v.."_var=_G['"..v.."'];"
         end
         parser.traverseTree(AST,function (node)
-            if node.type == "lookup" then
+            if node.type == "lookup" and node.member and node.member.value then
                 if not table_find(look_up_table,node.member.value) then
                     if type(node.member.value) ~= "number" then
                         table.insert(look_up_table,node.member.value)
-                        lookupslist = lookupslist.."local "..node.member.value.."_var=".."'"..node.member.value.."'"
+                        lookupslist = lookupslist.."local "..node.member.value.."_var=".."'"..node.member.value.."';"
                     end
                 end
             elseif node.type == "identifier" and getfenv()[node.name] then
@@ -39,7 +39,7 @@ return function (code)
     do  --lookups
         AST = parser.parse(code)
         parser.traverseTree(AST,function(node)
-            if node.type == "lookup" then
+            if node.type == "lookup" and node.member and node.member.value then
                 if type(node.member.value) ~= "number" then
                     node.member = parser.newNode("identifier",node.member.value.."_var")
                 end
