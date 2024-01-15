@@ -3,7 +3,6 @@ local last_condition = 1
 local conditions = {
     "256/num_table[256]~=12",
     "num_table[256]^4~=103219-1",
-    "#num_table>=1",
 }
 local function new_condition(node)
     math.randomseed(os.time())

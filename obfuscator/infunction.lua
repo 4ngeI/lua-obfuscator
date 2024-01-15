@@ -17,10 +17,10 @@ return function (code)
     local a,_ = strings(code)
     a = math(a)
     a = fake_conditions(a)
-    a = check_eq(a)
     a = bool_values(a)
+    a = check_eq(a)
     code = [[
-    return(function(strings_table,new_table,mul,div,sum,check_eq,bool_func)
+    return(function(strings_table,new_table,mul,div,sum,check_eq,bool_func,check_ne,check_lt,check_gt,check_le,check_ge)
         local num_table = {[256]=20}
         ]]..a..[[
     end)(]]..strings_string..[[,
@@ -67,6 +67,26 @@ return function (code)
         else
             return false
         end
+    end),
+    (function (a,b)
+        if a ~= b then return true end
+        return false
+    end),
+    (function (a,b)
+        if a < b then return true end
+        return false
+    end),
+    (function (a,b)
+        if a > b then return true end
+        return false
+    end),
+    (function (a,b)
+        if a <= b then return true end
+        return false
+    end),
+    (function (a,b)
+        if a >= b then return true end
+        return false
     end)
     )]]
     return code
