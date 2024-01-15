@@ -8,6 +8,8 @@ This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for
 3. Empty Tables Replaced with a Function
 4. Strings Converted to Variables
 5. Obfuscated Lookup Functions
+6. Math Obfuscation
+5. EQ Obfuscation
 
 ## Todo
 - Control Flow Obfuscation

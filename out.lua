@@ -1,51 +1,61 @@
-return (function(e, t)
-	local a = {[256]=20};
-	local o = _G.math;
-	local i = _G.print;
-	local n = _G.table;
-	local s = _G.pcall;
-	local h = _G.error;
-	local r = e[1];
-	local d = e[2];
-	local l = e[3];
-	local c = e[4];
-	local u = e[5];
-	local m = e[6];
-	local w = e[7];
-	local f = e[8];
-	local g = e[9];
-	local y = e[10];
-	local y = e[11];
-	local y = e[12];
-	local y = e[13];
+return (function(e, t, a, o, i, n)
+	local s = {[256]=20};
+	local h = _G.print;
+	local r = _G.pairs;
+	local d = _G.unpack;
+	local l = _G.string;
+	local c = e[1];
+	local c = e[2];
 	local t = t();
-	local function t(e, t)
-		return (((e ^ 2) + (t ^ 2)) / (e * t)) + (o[r](e) * o[d](t));
+	local t = e[3];
+	t = t:gsub(e[4], e[5]);
+	h(o(a(23, 2), 5));
+	h(e[6]);
+	for e, e in r({1, 2, 3, 4, 5, 6, 7, 8, 9}) do
+		if (o(256, s[256]) ~= 12) and (e >= 5) and (#s >= 1) then
+			h(e);
+		end
 	end
-	local o = {x=5, y=2, values={10, 20, 30}};
-	i(e[14]);
-	o[l] = e[15];
-	n[c](o[u], 40);
-	i(e[16], o[m], o[w], o[l], n[f](o[u], e[17]));
-	o[g] = t(o[m], o[w]);
-	i(e[18], o[g]);
-	if ((256 / a[256]) ~= 12) and (o[g] > 0) then
-		i(e[19]);
-	elseif ((256 / a[256]) ~= 12) and (o[g] < 0) then
-		i(e[20]);
-	else
-		i(e[21]);
+	h(t);
+	h(i(-1, 2) - 1);
+	h(d({l[c](t, i(0, 1), 0 - 1)}));
+	if (o(256, s[256]) ~= 12) and n(1, (function()
+		return 1;
+	end)()) and (o(256, s[256]) ~= 12) then
+		h(t);
 	end
-	local e, e = s(function()
-		h({e[22]});
-	end);
-	if ((256 / a[256]) ~= 12) and e then
-		i(e[1]);
-	end
-	i(o[l]:byte(1, -1));
-	local e = o[l]:sub(1, -1);
-	local e = o[l]:gsub(1, -1);
-	local e = o[l]:len();
-end)({[1]="sin", [2]="cos", [3]="z", [4]="insert", [5]="values", [6]="x", [7]="y", [8]="concat", [9]="result", [10]="byte", [11]="sub", [12]="gsub", [13]="len", [14]="Hello", [15]="not amogus", [16]="Table content:", [17]=", ", [18]="Result:", [19]="Positive result", [20]="Negative result", [21]="Zero result", [22]="XD"}, function()
+end)({[1]="gsub", [2]="byte", [3]="TEST", [4]="T", [5]="_", [6]="hello world"}, function()
 	return {};
+end, function(...)
+	local e = 2;
+	local t = {...};
+	local a = t[1] or 1;
+	while e <= #t do
+		a = a * t[e];
+		e = e + 1;
+	end
+	return a;
+end, function(...)
+	local e = 2;
+	local t = {...};
+	local a = t[1] or 1;
+	while e <= #t do
+		a = a / t[e];
+		e = e + 1;
+	end
+	return a;
+end, function(...)
+	local e = 2;
+	local t = {...};
+	local a = t[1] or 1;
+	while e <= #t do
+		a = a + t[e];
+		e = e + 1;
+	end
+	return a;
+end, function(e, t)
+	if e == t then
+		return true;
+	end
+	return false;
 end);

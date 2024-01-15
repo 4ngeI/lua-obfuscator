@@ -41,7 +41,7 @@ return function (code)
         parser.traverseTree(AST,function(node)
             if node.type == "call" then
                 if not node.method then
-                    if node.callee.type == "lookup" then
+                    if node.callee.type == "lookup" and node.callee.member and node.callee.value then
                         if type(node.callee.member.value) ~= "number" then
                             node.callee.member = parser.newNode("identifier",node.callee.member.value.."_var")
                         end
