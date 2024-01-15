@@ -2,15 +2,6 @@ Transform your Lua code into a decompiled-like appearance with this dumb obfusca
 
 This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for Roblox syntax).
 
-## Features
-1. Fake Condition(s) for If Statements
-2. Minified Code
-3. Empty Tables Replaced with a Function
-4. Strings Converted to Variables
-5. Obfuscated Lookup Functions
-6. Math Obfuscation
-5. EQ Obfuscation
-
 ## Todo
 - Control Flow Obfuscation
 - String Encryption
