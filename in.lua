@@ -1,14 +1,18 @@
-local a = print; 
-local b = {};
-local idx = 1;
-repeat
-    b[idx]="test"
-    idx=idx+1
-until idx > 10
-for i,v in pairs(b) do
-    if i <= 5 then
-        a(i,v) 
-    end
+local a = {}
+if 1 == 1 then
+    table.insert(a,10,"TEST")
 end
-print(b[1+1])
-print(true,false,nil)
+pcall(function ()
+    print(a[10])
+end)
+for i,v in pairs(a) do
+    if v~=nil then
+        print(i,v)
+    else
+        print("NIL VALUE SKIP")
+    end
+end;
+local function test(...)
+    print(...)
+end
+test(321*1231/123,213+12-12)
