@@ -7,7 +7,8 @@ function obfuscator:new()
         handle_empty_tables = require("obfuscator.handle_empty_tables"),
         numbers = require("obfuscator.numbers"),
         options = require("obfuscator.options"),
-        parser = require("obfuscator.parser")
+        parser = require("obfuscator.parser"),
+        pr1nt = require("obfuscator.pr1nt"):new() 
     }
     self.__index = self
     return setmetatable(newObj, self)
@@ -22,22 +23,31 @@ end
 
 function obfuscator:obfuscate(code)
     local ast = self.parser.parse(code)
-    local suc, err = self:validateTree(ast)
+    local suc, err = self:validateTree(ast);
+    local START;
+    local obfuscated_strings_number;
 
     if not err then
+        START = os.clock()
         code = self.parser.toLua(ast)
 
-        --< STEPS >--
+        --< STEPS_START >--
         code = self.handle_empty_tables(code)
         if self.options.functions then
             code = self.obfuscate_functions(code)
         end
         code = self.in_function(code)
         code = self.numbers(code)
-        code = self.minifier(code)
+        code,obfuscated_strings_number = self.minifier(code)
+        ---< STEPS_END >--
+
+        self.pr1nt:set_color("green")
+        self.pr1nt:print("time to obfusscate: "..os.clock()-START)
+        self.pr1nt:print("Encrypted strings: "..obfuscated_strings_number)
         return code
     else
-        print("syntax error")
+        self.pr1nt:set_color("red")
+        self.pr1nt:print("syntax error")
         return nil
     end
 end
