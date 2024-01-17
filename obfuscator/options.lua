@@ -1,7 +1,7 @@
 return {
     minify = {
         variables = true,
-        beautify = true,
+        beautify = false,
     },
     functions = true,
 }

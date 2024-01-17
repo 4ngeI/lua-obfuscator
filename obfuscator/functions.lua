@@ -6,7 +6,6 @@ return function (code)
     local functions = {}
     local function_list = ""
     local lookupslist = "";
-    local lookup_index = 1;
     local AST;
     local look_up_table = {}
 

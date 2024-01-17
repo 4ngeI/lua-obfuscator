@@ -1,3 +1,4 @@
+-- I'm not going to rewrite this
 local parser = require("obfuscator.parser");
 local function eq(code) --==
     local ast = parser.parse(code);
@@ -65,6 +66,7 @@ local function ge(code) --<=
     end)
     return parser.toLua(ast)
 end
+
 return function (code)
     code = eq(code);
     code = ne(code);

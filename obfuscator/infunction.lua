@@ -64,9 +64,8 @@ return function (code)
     (function(num)
         if num == 1 then 
             return true 
-        else
-            return false
         end
+        return false
     end),
     (function (a,b)
         if a ~= b then return true end

@@ -23,6 +23,8 @@ return function (code)
                 end
             end
         end 
+    end
+    do--replace strings
         for i,v in pairs(TOKENS) do
             if v.type == "string" then
                 for a,b in pairs(strings) do

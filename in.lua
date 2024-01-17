@@ -10,3 +10,5 @@ for i,v in pairs(b) do
         a(i,v) 
     end
 end
+print(b[1+1])
+print(true,false,nil)

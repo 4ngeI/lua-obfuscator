@@ -2,6 +2,7 @@ local obfuscate_functions = require("obfuscator.functions");
 local minifier = require("obfuscator.minifier")
 local in_function = require("obfuscator.infunction")
 local handle_empty_tables = require("obfuscator.handle_empty_tables")
+local numbers = require("obfuscator.numbers")
 local options = require("obfuscator.options")
 
 function Init()
@@ -11,6 +12,7 @@ function Init()
         code = obfuscate_functions(code)
     end
     code = in_function(code)
+    code = numbers(code)
     code = minifier(code)
     io.open("out.lua","wb"):write(code)
 end
