@@ -6,6 +6,7 @@ local fake_conditions = require("obfuscator.cf.conditions")
 local math = require("obfuscator.math")
 local check_eq = require("obfuscator.eq")
 local bool_values = require("obfuscator.bool")
+local return_cf = require("obfuscator.cf.return")
 
 function obfuscator:new(code)
     local tbl = {
@@ -46,8 +47,13 @@ function obfuscator:check_eq()
     self.code = check_eq(self.code)
 end
 
+function obfuscator:return_cf()
+    self.code = return_cf(self.code)
+end
+
 function obfuscator:general()
     self:processStrings()
+    self:return_cf()
     self:ob_math()
     self:conditions()
     self:ob_booleans()
@@ -121,6 +127,7 @@ function obfuscator:general()
     self.code = [[
         return(function(strings_table,new_table,mul,div,sum,check_eq,bool_func,check_ne,check_lt,check_gt,check_le,check_ge)
             local num_table = {[256]=20}
+            local return_idx = 1;
             ]]..self.code..[[
         end)]]..params..[[]]
     return self.code

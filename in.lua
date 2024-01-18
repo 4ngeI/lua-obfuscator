@@ -1,18 +1,9 @@
-local a = {}
-if 1 == 1 then
-    table.insert(a,10,"TEST")
+local a = "test";
+local b = "xd";
+local c = print
+local tbl = {[23132]="test",test="test",312312}
+local empty_tbl = {}
+c(a,b)
+if #tbl == string.byte(string.sub(b,1,1),1,-1)-119 then
+    print(tbl.test,tbl[23132])
 end
-pcall(function ()
-    print(a[10])
-end)
-for i,v in pairs(a) do
-    if v~=nil then
-        print(i,v)
-    else
-        print("NIL VALUE SKIP")
-    end
-end;
-local function test(...)
-    print(...)
-end
-test(321*1231/123,213+12-12)

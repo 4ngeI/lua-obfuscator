@@ -8,7 +8,8 @@ function obfuscator:new()
         numbers = require("obfuscator.numbers"),
         options = require("obfuscator.options"),
         parser = require("obfuscator.parser"),
-        pr1nt = require("obfuscator.pr1nt"):new() 
+        AntiTemper = require("obfuscator.idk"),
+        pr1nt = require("obfuscator.pr1nt"):new()
     }
     self.__index = self
     return setmetatable(newObj, self)
@@ -32,6 +33,7 @@ function obfuscator:obfuscate(code)
         code = self.parser.toLua(ast)
 
         --< STEPS_START >--
+        code = self.AntiTemper(code)
         code = self.handle_empty_tables(code)
         if self.options.functions then
             code = self.obfuscate_functions(code)

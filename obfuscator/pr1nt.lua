@@ -1,4 +1,4 @@
-XD = {}
+local XD = {}
 
 local colors = {
     reset = "\27[0m",
@@ -13,7 +13,7 @@ local colors = {
 }
 function XD:new()
     local obj = {
-        color = "reset",  
+        color = "reset",  -- Default color is reset
     }
     setmetatable(obj, self)
     self.__index = self
