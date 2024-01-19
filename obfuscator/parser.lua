@@ -533,7 +533,7 @@ end
 
 local KEYWORDS = newSet{
 	"and", "break", "do", "else", "elseif", "end", "false", "for", "function", "goto", "if",
-	"in", "local", "nil", "not", "or", "repeat", "return", "then", "true", "until", "while",
+	"in", "local", "nil", "not", "or", "repeat", "return", "then", "true", "until", "while","continue",
 }
 local PUNCTUATION = newSet{
 	"+",  "-",  "*",  "/",  "%",  "^",  "#",
@@ -735,7 +735,9 @@ local function AstFor (token,kind)return populateCommonNodeFields(token,{
 	body        = nil,   -- AstBlock.
 })end
 
-
+local function AstContinue (token)return populateCommonNodeFields(token,{
+	type        = "continue",
+})end
 
 local CHILD_FIELDS = {
 	["identifier"]  = {},
@@ -2728,8 +2730,13 @@ local function parseOneOrPossiblyMoreStatements(tokens, tokStart, statements) --
 
 		tableInsert(statements, breakNode)
 		return true, tok
+	elseif isToken(currentToken, "keyword", "continue") then
+        local continue_node = AstContinue(currentToken)
+		tok             = tok + 1 -- 'break'
 
-	-- return (last)
+		tableInsert(statements, continue_node)
+		return true, tok
+        -- return (last)
 	elseif isToken(currentToken, "keyword", "return") then
 		local returnNode = AstReturn(currentToken)
 		tok              = tok + 1 -- 'return'
@@ -2988,6 +2995,7 @@ local nodeConstructors = {
 	["if"]          = function()  return AstIf         (nil)  end,
 	["while"]       = function()  return AstWhile      (nil)  end,
 	["repeat"]      = function()  return AstRepeat     (nil)  end,
+    ["continue"]    = function()  return AstContinue   (nil) end,
 
 	["identifier"] = function(argCount, name, attribute)
 		if argCount == 0 then
@@ -3090,6 +3098,7 @@ local nodeConstructorsFast = {
 	["if"]          = function()  return AstIf         (nil)  end,
 	["while"]       = function()  return AstWhile      (nil)  end,
 	["repeat"]      = function()  return AstRepeat     (nil)  end,
+    ["continue"]    = function()  return AstContinue   (nil) end,
 
 	["label"]       = function(name)   return AstLabel  (nil, name)   end,
 	["goto"]        = function(name)   return AstGoto   (nil, name)   end,
@@ -3650,7 +3659,8 @@ local function traverseTree(node, leavesFirst, cb, parent, container, k)
 			if traverseTree(expr, leavesFirst, cb, node, node.values, i) then  return true  end
 		end
 		if node.body and traverseTree(node.body, leavesFirst, cb, node, node, "body") then  return true  end
-
+	elseif nodeType == "continue" then 
+		if node.body      and traverseTree(node.body,      leavesFirst, cb, node, node, "body")      then  return true  end
 	else
 		errorf("Invalid node type '%s'.", tostring(nodeType))
 	end
@@ -5820,7 +5830,9 @@ do
 		elseif nodeType == "break" then
 			lastOutput = writeAlphanum(buffer, pretty, "break", lastOutput)
 			lastOutput = writeLua(buffer, ";", "")
-
+        elseif nodeType == "continue" then
+            lastOutput = writeAlphanum(buffer, pretty, "continue", lastOutput)
+			lastOutput = writeLua(buffer, ";", "")
 		elseif nodeType == "return" then
 			local returnNode = node
 			lastOutput       = writeAlphanum(buffer, pretty, "return", lastOutput)
