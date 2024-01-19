@@ -3580,7 +3580,7 @@ local function traverseTree(node, leavesFirst, cb, parent, container, k)
 
 	local nodeType = node.type
 
-	if nodeType == "identifier" or nodeType == "vararg" or nodeType == "literal" or nodeType == "break" or nodeType == "label" or nodeType == "goto" then
+	if nodeType == "identifier" or nodeType == "vararg" or nodeType == "literal" or nodeType == "break" or nodeType == "label" or nodeType == "goto" or nodeType == "continue" then
 		-- void  No child nodes.
 
 	elseif nodeType == "table" then
@@ -3659,8 +3659,6 @@ local function traverseTree(node, leavesFirst, cb, parent, container, k)
 			if traverseTree(expr, leavesFirst, cb, node, node.values, i) then  return true  end
 		end
 		if node.body and traverseTree(node.body, leavesFirst, cb, node, node, "body") then  return true  end
-	elseif nodeType == "continue" then 
-		if node.body      and traverseTree(node.body,      leavesFirst, cb, node, node, "body")      then  return true  end
 	else
 		errorf("Invalid node type '%s'.", tostring(nodeType))
 	end
