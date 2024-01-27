@@ -2,7 +2,7 @@ Transform your Lua code into a decompiled-like appearance with this dumb obfusca
 
 This obfuscator is designed for Lua 5.1 and Roblox Lua (with limited support for Roblox syntax).
 
-(I will eventually rewrite all the code to use OOP)
+(do not use this abomination)
 
 ## Todo
 - Control Flow Obfuscation
